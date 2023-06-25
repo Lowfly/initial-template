@@ -1,6 +1,6 @@
 import SectionHero from "components/SectionHero/SectionHero";
 import SectionSliderNewCategories from "components/SectionSliderNewCategories/SectionSliderNewCategories";
-import React from "react";
+import React, { useEffect } from "react";
 import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
 import SectionOurFeatures from "components/SectionOurFeatures/SectionOurFeatures";
 import SectionGridFeaturePlaces from "./SectionGridFeaturePlaces";
@@ -13,6 +13,7 @@ import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGri
 import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
 import SectionVideos from "./SectionVideos";
 import SectionClientSay from "components/SectionClientSay/SectionClientSay";
+import { useListProperties } from "api/queries";
 
 const DEMO_CATS: TaxonomyType[] = [
   {
@@ -120,6 +121,12 @@ const DEMO_CATS_2: TaxonomyType[] = [
 ];
 
 function PageHome() {
+  const { data, error, isLoading } = useListProperties(1, 5);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data, error, isLoading]);
+
   return (
     <div className="nc-PageHome relative overflow-hidden">
       {/* GLASSMOPHIN */}
